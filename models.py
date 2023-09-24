@@ -1,13 +1,16 @@
 import os
-from sqlalchemy import Column, String, create_engine
+from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-database_path = os.environ['DATABASE_URL']
-if database_path.startswith("postgres://"):
-  database_path = database_path.replace("postgres://", "postgresql://", 1)
+database_user = os.environ.get('db_user')
+database_pwd = os.environ.get('db_pwd')
+database_name = "castingagency"
+database_path = "postgresql://{}:{}@{}/{}".format(
+    database_user, database_pwd, "localhost:5432", database_name)
 
 db = SQLAlchemy()
+
 
 '''
 setup_db(app)
@@ -18,26 +21,74 @@ def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
+
+def create_tables():
     db.create_all()
 
 
 '''
-Person
+Movie
 Have title and release year
 '''
-class Person(db.Model):  
-  __tablename__ = 'People'
+class Movie(db.Model):
+    __tablename__ = 'movies'
 
-  id = Column(db.Integer, primary_key=True)
-  name = Column(String)
-  catchphrase = Column(String)
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    release_year = Column(Integer)
+    actors = db.relationship('Actor', backref='movies')
 
-  def __init__(self, name, catchphrase=""):
-    self.name = name
-    self.catchphrase = catchphrase
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
 
-  def format(self):
-    return {
-      'id': self.id,
-      'name': self.name,
-      'catchphrase': self.catchphrase}
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def format(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'release_year': self.release_year
+        }
+
+'''
+Actor
+'''
+
+class Actor(db.Model):
+    __tablename__ = 'actors'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    age = Column(Integer)
+    gender = Column(String)
+
+    movie_id = db.Column(
+        db.Integer,
+        db.ForeignKey('movies.id'),
+        nullable=False)
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def format(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'age': self.age,
+            'gender': self.gender,
+            'movie_id': self.movie_id
+        }
