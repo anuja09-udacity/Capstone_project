@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 
 #for Render
-database_path= "postgres://castingagency_w28h_user:JdAoxlf1xEmdXkG3HRXRASNAVhFnrqYr@dpg-ck88ajfsasqs73c5ost0-a/castingagency_w28h"
+database_path= 'postgres://castingagency_w28h_user:JdAoxlf1xEmdXkG3HRXRASNAVhFnrqYr@dpg-ck88ajfsasqs73c5ost0-a/castingagency_w28h'
 
 #for testing locally
 #database_user = os.environ.get('db_user')
