@@ -3,14 +3,17 @@ from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-database_user = os.environ.get('db_user')
-database_pwd = os.environ.get('db_pwd')
-database_name = "castingagency"
-database_path = "postgresql://{}:{}@{}/{}".format(
-    database_user, database_pwd, "localhost:5432", database_name)
+#for Render
+database_path= "postgres://castingagency_w28h_user:JdAoxlf1xEmdXkG3HRXRASNAVhFnrqYr@dpg-ck88ajfsasqs73c5ost0-a/castingagency_w28h"
+
+#for testing locally
+#database_user = os.environ.get('db_user')
+#database_pwd = os.environ.get('db_pwd')
+#database_name = "castingagency"
+#database_path = "postgresql://{}:{}@{}/{}".format(
+#    database_user, database_pwd, "localhost:5432", database_name)
 
 db = SQLAlchemy()
-
 
 '''
 setup_db(app)
