@@ -40,8 +40,8 @@ def create_app(test_config=None):
     for all available movies.
     """
     @app.route('/movies')
-    #@requires_auth('view:movies')
-    def get_movies():
+    @requires_auth('view:movies')
+    def get_movies(jwt):
         movies = Movie.query.all()
 
         if not movies:
