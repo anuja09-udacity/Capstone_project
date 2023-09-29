@@ -7,15 +7,17 @@ from flask_sqlalchemy import SQLAlchemy
 #database_path= 'postgres://castingagency_w28h_user:JdAoxlf1xEmdXkG3HRXRASNAVhFnrqYr@dpg-ck88ajfsasqs73c5ost0-a/castingagency_w28h'
 
 #for testing locally
-database_user = os.environ.get('db_user')
-database_pwd = os.environ.get('db_pwd')
-database_name = "castingagency"
-database_path = "postgresql://{}:{}@{}/{}".format(
-    database_user, database_pwd, "localhost:5432", database_name)
+# database_user = os.environ.get('db_user')
+# database_pwd = os.environ.get('db_pwd')
+# database_name = "castingagency"
+# database_path = "postgresql://{}:{}@{}/{}".format(
+#     database_user, database_pwd, "localhost:5432", database_name)
+
+database_path =os.environ.get('db_path')
 
 db = SQLAlchemy()
 
-#print ('db user', database_user)
+print ('db path', database_path)
 
 '''
 setup_db(app)

@@ -154,10 +154,10 @@ class TriviaTestCase(unittest.TestCase):
 
     
     def test_delete_movie(self):
-         res = self.client().delete("/movies/delete/18", headers=self.header_ep)
+         res = self.client().delete("/movies/delete/4", headers=self.header_ep)
          data = json.loads(res.data)
 
-         movie = Movie.query.filter(Movie.id == 18).one_or_none()
+         movie = Movie.query.filter(Movie.id == 4).one_or_none()
 
          self.assertEqual(res.status_code, 200)
          self.assertEqual(data["success"], True)
