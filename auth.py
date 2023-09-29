@@ -34,8 +34,8 @@ class AuthError(Exception):
     return the token part of the header
 '''
 def get_token_auth_header():
-    print ('AUTH0 domain', AUTH0_DOMAIN)
-    print ('AUTH0 audience', API_AUDIENCE)
+    #print ('AUTH0 domain', AUTH0_DOMAIN)
+    #print ('AUTH0 audience', API_AUDIENCE)
     """Obtains the Access Token from the Authorization Header
     """
     auth = request.headers.get('Authorization', None)
@@ -66,7 +66,6 @@ def get_token_auth_header():
 
     token = parts[1]
     return token
-    print ('token', token)
 
 '''
 @TODO implement check_permissions(permission, payload) method
@@ -176,8 +175,6 @@ def requires_auth(permission=''):
             token = get_token_auth_header()
             payload = verify_decode_jwt(token)
             check_permissions(permission, payload)
-            print('error here 1')
             return f(payload, *args, **kwargs)
-        print('error here 2')
         return wrapper
     return requires_auth_decorator
