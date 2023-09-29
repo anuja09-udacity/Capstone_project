@@ -1,3 +1,10 @@
+# Introduction
+The Casting Agency API allows users to query the database for movies and actors. There are three different user roles 
+
+
+# Motivation
+As part of Udacity Fullstack Developer Nanodegree Capstone Project which is the final project to combine all of the concepts and the skills taught in the course to build a complete API
+
 # Casting Agency Capstone Project
 Webpage for the final project can be accessed at https://castingagency-project.onrender.com
 
@@ -20,6 +27,7 @@ Webpage for the final project can be accessed at https://castingagency-project.o
 * DELETE /actors/ and /movies/
 * POST /actors and /movies and
 * PATCH /actors/ and /movies/
+
 
 ### Roles
 * Casting Assistant
@@ -165,7 +173,21 @@ Sample response:
 }
 ```
 
-Bearer Tokens
+### Test AUTH locally
+* To test the Auth locally, use the access tokens generated against the local host URL 
+* Create test cases for each role and endpoint as a Postman Collection
+* Map the access token as Bearer token against each role and run the collection
+
+
+### Render Deployment
+* To deploy the app in render, create a database and copy its internal connection URL
+* Create a Webservice in render by pointing to the GitHub repo and use the database internal URL as environment variable
+* Include pip install -r requirements.txt as a Build command under the Settings tab of Webservice 
+* Save AUTH0_DOMAIN, AUTH0_AUDIENCE as environment variables
+* Deploy the code and once build is successful, copy the URL created
+* Use AUTH0 to get access tokens for each role and use this access token in Postman against the Render deployed app URL to test the application
+
+Bearer Tokens for Render
 Casting Assistant
 eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkdtOXJGLUNjNk1zVjlBRUpUM0tBUyJ9.eyJpc3MiOiJodHRwczovL2FudWphZnNuZC11ZGFjaXR5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTEwMDZhMjZlYTgyNWVmNGY1ZmFiNjYiLCJhdWQiOiJDYXN0aW5nQWdlbmN5IiwiaWF0IjoxNjk1OTg0MzM0LCJleHAiOjE2OTYwNzA3MzQsImF6cCI6ImdjMTU2eWtzOVFGSWNYZVc2OFA5SkpuMER4azlEd3V3Iiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.fEcj13re3uksSiBK5vyKjzaR5sLf9fv0HjUE63cQrGtx8COuDk7Q7gKw0PsuSxMlD30VxFPftMZQorKauyx5ZIC3PXToKl3uuswbUKuIjU8pA0CFyT_uIXRwvVBHIZNKieusuRpScilRCgrJfYDmjeyuep6_vOYNXttrUk1lNCySKgA6Map7P7kpPpZA6FwLB0HKorkBK68y1HwZLcTsYEfxz3sM-jO9KFTfJh3iAA6YQV1Dghf7uiO61vOUOOZKblk_em8fPgAfLdu8S_J_yT0lUtaScZfi22AtKD66J9mVtwCdlAsun8FMtMhBmWwjlp35CXyCiMHZ-PXorUWBUg
 

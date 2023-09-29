@@ -17,13 +17,7 @@ def create_app(test_config=None):
     migrate = Migrate(app, db)
     CORS(app)
 
-    """
-    @TODO: Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
-    """
-
-    """
-    @TODO: Use the after_request decorator to set Access-Control-Allow
-    """
+   
     @app.after_request
     def after_request(response):
         response.headers.add(
@@ -35,8 +29,7 @@ def create_app(test_config=None):
         return response
 
     """
-    @TODO:
-    Create an endpoint to handle GET requests
+    endpoint to handle GET requests
     for all available movies.
     """
     @app.route('/movies')
@@ -55,8 +48,7 @@ def create_app(test_config=None):
         })
     
     """
-    @TODO:
-    Create an endpoint to handle GET requests for actors
+     endpoint to handle GET requests for actors
     """
     @app.route('/actors')
     @requires_auth('view:actors')
@@ -75,8 +67,7 @@ def create_app(test_config=None):
 
 
     """
-    @TODO:
-    Create an endpoint to ADD a new movie.
+    endpoint to ADD a new movie.
     """
     @app.route('/movies/add', methods=['POST'])
     @requires_auth('add:movies')
@@ -104,8 +95,7 @@ def create_app(test_config=None):
 
 
     """
-    @TODO:
-    Create an endpoint to ADD an actor against a movie id.
+    endpoint to ADD an actor against a movie id.
     """
     @app.route('/actors/add', methods=['POST'])
     @requires_auth('add:actors')
@@ -141,8 +131,7 @@ def create_app(test_config=None):
 
 
     """
-    @TODO:
-    Create an endpoint to update details of a movie for the selected id
+     endpoint to update details of a movie for the selected id
     """
 
     @app.route('/movies/update/<int:movie_id>', methods=['PATCH'])
@@ -176,8 +165,7 @@ def create_app(test_config=None):
 
     
     """
-    @TODO:
-    Create an endpoint to update details of an actor for the selected id
+    endpoint to update details of an actor for the selected id
     """
 
     @app.route('/actors/update/<int:actor_id>', methods=['PATCH'])
@@ -216,8 +204,7 @@ def create_app(test_config=None):
             abort(404)
 
     """
-    @TODO:
-    Create an endpoint to delete a movie for the selected id
+    endpoint to delete a movie for the selected id
     """
     @app.route('/movies/delete/<int:movie_id>', methods=['DELETE'])
     @requires_auth('delete:movies')
@@ -238,8 +225,7 @@ def create_app(test_config=None):
             abort(404)
 
     """
-    @TODO:
-    Create an endpoint to delete an actor for the selected id
+    endpoint to delete an actor for the selected id
     """
     @app.route('/actors/delete/<int:actor_id>', methods=['DELETE'])
     @requires_auth('delete:actors')
@@ -262,8 +248,7 @@ def create_app(test_config=None):
 
     
     """
-    @TODO:
-    Create error handlers for all expected errors
+    error handlers for all expected errors
     including 404 and 422.
     """
     @app.errorhandler(404)
